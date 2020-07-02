@@ -1,64 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using Rocket.API;
-using Rocket.Core.Logging;
-using Rocket.Unturned.Commands;
 using Rocket.Unturned.Player;
-using SDG.Unturned;
-using Steamworks;
 using UnityEngine;
 
 namespace ZaupHomeCommand
 {
     public class CommandHome : IRocketCommand
     {
-        public string Name
-        {
-            get
-            {
-                return "home";
-            }
-        }
-        public string Help
-        {
-            get
-            {
-                return "Teleports you to your bed if you have one.";
-            }
-        }
-        public string Syntax
-        {
-            get
-            {
-                return "";
-            }
-        }
-        public List<string> Aliases
-        {
-            get { return new List<string>(); }
-        }
-        public List<string> Permissions
-        {
-            get { return new List<string>() { }; }
-        }
+        public string Name => "home";
 
-        public AllowedCaller AllowedCaller
-        {
-            get
-            {
-                return AllowedCaller.Player;
-            }
-        }
+        public string Help => "Teleports you to your bed if you have one.";
+
+        public string Syntax => "";
+
+        public List<string> Aliases => new List<string>();
+
+        //?????
+        public List<string> Permissions => new List<string>();
+
+        public AllowedCaller AllowedCaller => AllowedCaller.Player;
 
         public void Execute(IRocketPlayer caller, string[] bed)
         {
-            UnturnedPlayer playerid = (UnturnedPlayer)caller;
-            HomePlayer homeplayer = playerid.GetComponent<HomePlayer>();
-            object[] cont = HomeCommand.CheckConfig(playerid);
+            UnturnedPlayer playerId = (UnturnedPlayer)caller;
+            HomePlayer homePlayer = playerId.GetComponent<HomePlayer>();
+            object[] cont = ZaupHomeCommand.CheckConfig(playerId);
             if (!(bool)cont[0]) return;
             // A bed was found, so let's run a few checks.
-            homeplayer.GoHome((Vector3)cont[1], (byte)cont[2], playerid);
+            HomePlayer.CurrentHomePlayers.Add(playerId, homePlayer);
+            homePlayer.GoHome((Vector3)cont[1], (byte)cont[2], playerId);
         }
     }
 }
