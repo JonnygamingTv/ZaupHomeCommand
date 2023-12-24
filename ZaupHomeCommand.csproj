@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZaupHomeCommand</RootNamespace>
     <AssemblyName>ZaupHomeCommand</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,28 +30,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>D:\SteamLibrary\steamapps\common\Unturned\Unturned_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Unturned_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>D:\SteamLibrary\steamapps\common\Unturned\Unturned_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Unturned_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
     </Reference>
-    <Reference Include="Rocket.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Rocket.API.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Rocket.API">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Extras\Rocket.Unturned\Rocket.API.dll</HintPath>
     </Reference>
-    <Reference Include="Rocket.Core, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Rocket.Core.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Rocket.Core">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Extras\Rocket.Unturned\Rocket.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Rocket.Unturned, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Rocket.Unturned.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Rocket.Unturned">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Extras\Rocket.Unturned\Rocket.Unturned.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,13 +55,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\UnityEngine.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Unturned_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Unturned\Unturned_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
