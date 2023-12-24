@@ -34,7 +34,9 @@ namespace ZaupHomeCommand
         }
         public void GoHome(Vector3 bedPos, byte bedRot, UnturnedPlayer player)
         {
+        #if DEBUG
             Rocket.Core.Logging.Logger.Log("starting gohome");
+        #endif
             _waitRestricted = ZaupHomeCommand.Instance.Configuration.Instance.TeleportWait;
             movementRestricted = ZaupHomeCommand.Instance.Configuration.Instance.MovementRestriction;
             _player = player;
@@ -63,7 +65,6 @@ namespace ZaupHomeCommand
                         byte[] time2 = new byte[hg.Count];
                         for (byte g=0;g<hg.Count;g++)
                         {
-                            
                             RocketPermissionsGroup hgr = hg[g];
                             ZaupHomeCommand.Instance.waitGroups.TryGetValue(hgr.Id, out time2[g]);
                             if (time2[g] <= 0)
@@ -101,13 +102,17 @@ namespace ZaupHomeCommand
                 CurrentHomePlayers.Remove(_player);
                 yield break;
             }
+            #if DEBUG
             Rocket.Core.Logging.Logger.Log("starting dogohome");
+            #endif
             if (!canGoHome)
             {
                 CurrentHomePlayers.Remove(_player);
                 yield break;
             }
             UnturnedChat.Say(_player, string.Format(ZaupHomeCommand.Instance.Configuration.Instance.TeleportMsg, _player.CharacterName));
+            SDG.Unturned.EPlayerStance toStance = ZaupHomeCommand.Instance.Configuration.Instance.TpStance;
+            _player.Player.stance.stance = toStance;
             _player.Teleport(_bedPos, _bedRot);
             canGoHome = false;
             _goingHome = false;
