@@ -40,7 +40,7 @@ namespace ZaupHomeCommand
             _waitRestricted = ZaupHomeCommand.Instance.Configuration.Instance.TeleportWait;
             movementRestricted = ZaupHomeCommand.Instance.Configuration.Instance.MovementRestriction;
             _player = player;
-            _bedPos = Vector3.up + bedPos + new Vector3(0f, 0.5f, 0f);
+            _bedPos = Vector3.up + bedPos + new Vector3(0f, ZaupHomeCommand.Instance.Configuration.Instance.BedTopOffset, 0f);
             _bedRot = bedRot;
 
             if (_waitRestricted)

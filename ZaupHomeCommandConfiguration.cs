@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Rocket.API;
 
 namespace ZaupHomeCommand
@@ -17,6 +17,7 @@ namespace ZaupHomeCommand
         public string FoundBedWaitNoMoveMsg;
         public string UnableMoveSinceMoveMsg;
         public string NoTeleportDiedMsg;
+        public float BedTopOffset;
         public SDG.Unturned.EPlayerStance TpStance;
 
         public void LoadDefaults()
@@ -38,6 +39,7 @@ namespace ZaupHomeCommand
             FoundBedWaitNoMoveMsg = "I have located your bed {0}, now don't move for {1} seconds while I prepare you for teleport.";
             UnableMoveSinceMoveMsg = "I'm sorry {0}, but you moved.  I am unable to teleport you.";
             NoTeleportDiedMsg = "Sorry {0}, unable to finish home teleport as you died.";
+            BedTopOffset = 0.5f;
             TpStance = SDG.Unturned.EPlayerStance.CROUCH;
         }
     }
