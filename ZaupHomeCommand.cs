@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using Rocket.API;
 using Rocket.Core.Plugins;
 using Rocket.Unturned;
 using Rocket.Unturned.Chat;
@@ -22,15 +23,23 @@ namespace ZaupHomeCommand
             
             foreach (HomeGroup hg in Configuration.Instance.WaitGroups)
                 waitGroups.Add(hg.Id, hg.Wait);
-            
 
-            UnturnedPlayerEvents.OnPlayerUpdatePosition += (player, position) =>
-            {
-                if (!HomePlayer.CurrentHomePlayers.ContainsKey(player) ||
-                    !HomePlayer.CurrentHomePlayers[player].movementRestricted) return;
-                HomePlayer.CurrentHomePlayers[player].canGoHome = false;
-                UnturnedChat.Say(player, string.Format(Instance.Configuration.Instance.UnableMoveSinceMoveMsg, player.CharacterName));
-            };
+
+            UnturnedPlayerEvents.OnPlayerUpdatePosition += OPUP;
+        }
+        public override void UnloadPlugin(PluginState state = PluginState.Unloaded)
+        {
+            waitGroups.Clear();
+            waitGroups = null;
+            Instance = null;
+            UnturnedPlayerEvents.OnPlayerUpdatePosition -= OPUP;
+        }
+        void OPUP(UnturnedPlayer player, Vector3 position)
+        {
+            if (!HomePlayer.CurrentHomePlayers.ContainsKey(player) ||
+                !HomePlayer.CurrentHomePlayers[player].movementRestricted) return;
+            HomePlayer.CurrentHomePlayers[player].canGoHome = false;
+            UnturnedChat.Say(player, string.Format(Instance.Configuration.Instance.UnableMoveSinceMoveMsg, player.CharacterName));
         }
         // All we are doing here is checking the config to see if anything like restricted movement or time restriction is enforced.
         public static object[] CheckConfig(UnturnedPlayer player)
